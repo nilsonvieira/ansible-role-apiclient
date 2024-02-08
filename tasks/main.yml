@@ -1,0 +1,22 @@
+# INSOMNIA REPOS
+- name: Add Repos Insomnia
+  apt_repository:
+    repo: deb [trusted=yes arch=amd64] https://download.konghq.com/insomnia-ubuntu/ default all
+    state: present
+    filename: insomnia
+
+- name: Unarchive a Postman file
+  ansible.builtin.unarchive:
+    src: https://dl.pstmn.io/download/latest/linux_64
+    dest: /opt/
+    remote_src: yes
+
+- name: Install 1Password Packages 
+  become: true
+  ansible.builtin.apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - insomnia
