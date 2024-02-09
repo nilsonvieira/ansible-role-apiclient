@@ -11,7 +11,9 @@
     dest: /opt/
     remote_src: yes
 
-- name: Install 1Password Packages 
+
+
+- name: Install ApiClient Packages 
   become: true
   ansible.builtin.apt:
     name: "{{ packages }}"
